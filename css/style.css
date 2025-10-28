@@ -140,3 +140,11 @@ footer a {
 footer a:hover {
   text-shadow: 0 0 10px #22ff88;
 }
+
+.itemName {
+  color: #ffbf00;
+}
+
+.rare {
+  color: #263ed9;
+}
