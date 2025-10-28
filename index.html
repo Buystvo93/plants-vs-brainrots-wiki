@@ -1,59 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Plant vs Brainrot Wiki</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <header>
       <h1>🌿 Plant vs Brainrot Wiki</h1>
-      <input type="text" id="search" placeholder="Search pages..." onkeyup="searchWiki()">
+      <input
+        type="text"
+        id="search"
+        placeholder="Search pages..."
+        onkeyup="searchWiki()"
+      />
     </header>
 
     <main>
       <aside class="sidebar">
-        <h3>Pages</h3>
+        <h3>📁 Pages</h3>
         <ul id="pageList">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="plants.html">Plants</a></li>
-          <li><a href="brainrots.html">Brainrots</a></li>
-          <li><a href="items.html">Items</a></li>
-          <li><a href="updates.html">Updates</a></li>
+          <li><a href="index.html">🏠 Home</a></li>
+          <li><a href="plants.html">🌱 Plants</a></li>
+          <li><a href="zombies.html">🧠 Zombies</a></li>
+          <li><a href="items.html">🎒 Items</a></li>
+          <li><a href="updates.html">📰 Updates</a></li>
+          <li><a href="faq.html">❓ FAQ</a></li>
         </ul>
       </aside>
 
       <section class="content">
-        <h2>Welcome to the Plant vs Brainrot Wiki!</h2>
-        <p>
-          This is the fan-made wiki for the Roblox game <b>Plant vs Brainrot</b>.
-          Learn about plants, zombies, items, and updates — all in one place!
-        </p>
+        <div class="hero">
+          <h2>Welcome to the <span>Plant vs Brainrot</span> Wiki!</h2>
+          <p>
+            The fan-made hub for everything about the Roblox hit game —
+            <b>Plant vs Brainrot</b> 🌱🧠  
+            Discover plants, zombies, strategies, and updates!
+          </p>
+          <a href="plants.html" class="button">Explore Now</a>
+        </div>
 
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="plants.html">Plants</a></li>
-          <li><a href="brainrots.html">Brainrots</a></li>
-          <li><a href="items.html">Items</a></li>
-          <li><a href="updates.html">Updates</a></li>
-        </ul>
-
-        <p><i>Created and maintained by <b>you</b> on GitHub Pages.</i></p>
+        <h3>🌟 Featured Sections</h3>
+        <div class="card-grid">
+          <a href="plants.html" class="card">
+            <h4>🌱 Plants</h4>
+            <p>Meet all plants, their stats, and abilities.</p>
+          </a>
+          <a href="zombies.html" class="card">
+            <h4>🧠 Zombies</h4>
+            <p>Learn about every Brainrot variant and its weakness.</p>
+          </a>
+          <a href="items.html" class="card">
+            <h4>🎒 Items</h4>
+            <p>Tools and power-ups that turn the tide of battle.</p>
+          </a>
+          <a href="updates.html" class="card">
+            <h4>📰 Updates</h4>
+            <p>Track the latest versions, patches, and changes.</p>
+          </a>
+        </div>
       </section>
     </main>
 
     <footer>
-      <p>© 2025 Plant vs Brainrot Wiki | Hosted on GitHub Pages</p>
+      <p>
+        © 2025 Plant vs Brainrot Wiki | Made by <b>you</b> | Hosted on
+        <a href="https://github.com">GitHub Pages</a>
+      </p>
     </footer>
 
     <script>
       function searchWiki() {
         const input = document.getElementById("search").value.toLowerCase();
         const links = document.querySelectorAll("#pageList li a");
-        links.forEach(link => {
+        links.forEach((link) => {
           const text = link.textContent.toLowerCase();
-          link.parentElement.style.display = text.includes(input) ? "block" : "none";
+          link.parentElement.style.display = text.includes(input)
+            ? "block"
+            : "none";
         });
       }
     </script>
