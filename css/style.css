@@ -1,54 +1,142 @@
+/* === Global === */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', sans-serif;
   margin: 0;
-  background: #0b0c10;
-  color: #eee;
+  background: radial-gradient(circle at top, #0a0f0d, #000);
+  color: #f4f4f4;
 }
+
+/* === Header === */
 header {
-  background: #1f2833;
-  padding: 1em;
+  background: linear-gradient(90deg, #11ff88, #a011ff);
+  padding: 1.2em;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #fff;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
 }
 header h1 {
   margin: 0;
-  color: #66fcf1;
+  font-size: 1.6em;
 }
 #search {
-  padding: 6px 10px;
+  padding: 0.5em 0.8em;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
+  outline: none;
+  width: 180px;
+  font-size: 0.9em;
 }
+
+/* === Layout === */
 main {
   display: flex;
+  flex-wrap: wrap;
+  min-height: 100vh;
 }
+
+/* === Sidebar === */
 .sidebar {
-  width: 220px;
-  background: #1c1c1c;
-  padding: 1em;
-  height: 100vh;
-  position: sticky;
-  top: 0;
+  background: #111;
+  padding: 1.5em;
+  width: 240px;
+  flex-shrink: 0;
+  box-shadow: inset -1px 0 10px #22ff88;
 }
 .sidebar h3 {
-  color: #45a29e;
+  color: #11ff88;
+  margin-top: 0;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.sidebar li {
+  margin: 0.6em 0;
 }
 .sidebar a {
-  color: #45a29e;
+  color: #bbb;
   text-decoration: none;
+  transition: 0.2s;
+  font-weight: 500;
 }
 .sidebar a:hover {
-  color: #66fcf1;
+  color: #22ff88;
+  text-shadow: 0 0 10px #22ff88;
 }
+
+/* === Content === */
 .content {
-  padding: 2em;
   flex: 1;
-  line-height: 1.6;
+  padding: 2em;
 }
+.hero {
+  background: linear-gradient(145deg, rgba(34,255,136,0.15), rgba(160,17,255,0.15));
+  border: 1px solid rgba(34,255,136,0.3);
+  border-radius: 20px;
+  padding: 2em;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(34,255,136,0.1);
+  margin-bottom: 2em;
+}
+.hero span {
+  color: #22ff88;
+  text-shadow: 0 0 10px #22ff88;
+}
+.button {
+  display: inline-block;
+  background: linear-gradient(90deg, #22ff88, #a011ff);
+  color: #fff;
+  padding: 0.8em 1.5em;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-weight: 600;
+}
+.button:hover {
+  box-shadow: 0 0 15px #22ff88;
+  transform: scale(1.05);
+}
+
+/* === Cards === */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5em;
+}
+.card {
+  background: #161616;
+  border: 1px solid #333;
+  border-radius: 15px;
+  padding: 1.2em;
+  text-align: center;
+  text-decoration: none;
+  color: #ddd;
+  transition: 0.25s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  border-color: #22ff88;
+  box-shadow: 0 0 15px #22ff88;
+}
+.card h4 {
+  color: #22ff88;
+  margin: 0 0 0.5em 0;
+}
+
+/* === Footer === */
 footer {
   text-align: center;
   padding: 1em;
-  background: #1f2833;
+  background: #111;
   color: #aaa;
+  font-size: 0.9em;
+}
+footer a {
+  color: #22ff88;
+  text-decoration: none;
+}
+footer a:hover {
+  text-shadow: 0 0 10px #22ff88;
 }
