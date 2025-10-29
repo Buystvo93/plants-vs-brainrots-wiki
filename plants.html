@@ -4,13 +4,166 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plants | Plant vs Brainrot Wiki</title>
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+      
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #0b0c10;
+        color: #fff;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      /* === Header === */
+      header {
+        background: linear-gradient(90deg, #00ff9d, #0077ff, #b400ff);
+        color: #fff;
+        padding: 15px 25px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 1.8em;
+      }
+
+      header a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      /* === Layout === */
+      main {
+        display: flex;
+        flex: 1;
+        padding: 25px;
+        gap: 25px;
+      }
+
+      .sidebar {
+        width: 220px;
+        background: #111;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 0 12px rgba(0, 255, 150, 0.2);
+        height: fit-content;
+      }
+
+      .sidebar h3 {
+        color: #00ff9d;
+        margin-bottom: 10px;
+      }
+
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .sidebar li {
+        margin: 10px 0;
+      }
+
+      .sidebar a {
+        color: #ccc;
+        text-decoration: none;
+        transition: 0.2s;
+      }
+
+      .sidebar a:hover {
+        color: #00ff9d;
+        text-shadow: 0 0 10px #00ff9d;
+      }
+
+      /* === Content === */
+      .content {
+        flex: 1;
+        background: #111;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 0 15px rgba(0, 255, 150, 0.1);
+      }
+
+      h2 {
+        color: #00ff9d;
+        border-bottom: 2px solid #00ff9d;
+        padding-bottom: 5px;
+      }
+
+      p {
+        line-height: 1.6;
+      }
+
+      /* === Table === */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 0 20px rgba(0, 255, 200, 0.1);
+      }
+
+      th {
+        background: linear-gradient(90deg, #00ff9d, #0077ff);
+        color: #000;
+        padding: 10px;
+        text-align: left;
+      }
+
+      td {
+        padding: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        background-color: #0f1115;
+      }
+
+      tr:hover td {
+        background-color: rgba(0, 255, 157, 0.05);
+      }
+
+      img {
+        border-radius: 6px;
+        vertical-align: middle;
+      }
+
+      .itemName {
+        color: #ffcb2b;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .itemName:hover {
+        text-shadow: 0 0 8px #ffcb2b;
+      }
+
+      .rare {
+        color: #00aaff;
+        font-weight: 600;
+      }
+
+      footer {
+        text-align: center;
+        padding: 15px;
+        background: #0d0d0d;
+        color: #aaa;
+        font-size: 0.9em;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+    </style>
   </head>
+
   <body>
     <header>
-      <h1><a href="index.html" style="color:#66fcf1;text-decoration:none;">Plant vs Brainrot Wiki</a></h1>
+      <h1><a href="index.html">🌿 Plant vs Brainrot Wiki</a></h1>
     </header>
+
     <main>
+      <!-- Sidebar -->
       <aside class="sidebar">
         <h3>Pages</h3>
         <ul>
@@ -22,19 +175,42 @@
         </ul>
       </aside>
 
+      <!-- Main Section -->
       <section class="content">
         <h2>🌿 Plants</h2>
         <p>Plants are your main defense against Brainrot zombies. Each one has unique abilities and stats.</p>
-        <table border="1" cellspacing="0" cellpadding="8">
-          <tr><th>Image</th><th>Name</th><th>Rarity</th><th>How to Get</th></tr>
-          <tr><td><img src="img/cactus.png" height="50" width="50"></td><td><a class="itemName" href="cactus.html">Cactus</a></td><td><span class="rare">Rare</span></td><td>Seed Shop</td></tr>
-          <tr><td></td><td>Peashooter</td><td>Attack</td><td>Shoots peas</td></tr>
-          <tr><td></td><td>Iceberry</td><td>Slow</td><td>Slows zombies</td></tr>
+
+        <table>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Rarity</th>
+            <th>How to Get</th>
+          </tr>
+          <tr>
+            <td><img src="img/cactus.png" height="50" width="50" alt="Cactus"></td>
+            <td><a class="itemName" href="cactus.html">Cactus</a></td>
+            <td><span class="rare">Rare</span></td>
+            <td>Seed Shop</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Peashooter</td>
+            <td>Attack</td>
+            <td>Shoots peas</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>Iceberry</td>
+            <td>Slow</td>
+            <td>Slows zombies</td>
+          </tr>
         </table>
       </section>
     </main>
+
     <footer>
-      <p>© 2025 Plant vs Brainrot Wiki</p>
+      <p>© 2025 Plant vs Brainrot Wiki | Designed for fans, by fans 🌱</p>
     </footer>
   </body>
 </html>
