@@ -177,43 +177,48 @@
     </footer>
 
     <script>
-      // ✅ Use your Cloudflare Worker as a proxy
-      const API_URL = "https://pvb-proxy.buystvoinc.workers.dev/";
+  const API_URL = "https://pvb-proxy.buystvoinc.workers.dev/";
 
-      const status = document.getElementById("status");
-      const table = document.getElementById("stockTable");
-      const tbody = table.querySelector("tbody");
+  const status = document.getElementById("status");
+  const table = document.getElementById("stockTable");
+  const tbody = table.querySelector("tbody");
 
-      async function loadStock() {
-        try {
-          const res = await fetch(API_URL);
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          const data = await res.json();
+  async function loadStock() {
+    try {
+      const res = await fetch(API_URL);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
-          tbody.innerHTML = "";
+      const data = await res.json();
+      console.log("Fetched data:", data); // 👀 Debugging
 
-          // Assuming data is an array of objects
-          for (const item of data) {
-            const tr = document.createElement("tr");
-            tr.innerHTML = `
-              <td>${item.name || "Unknown"}</td>
-              <td>${item.stock ?? "?"}</td>
-              <td>${item.lastUpdated || "N/A"}</td>
-            `;
-            tbody.appendChild(tr);
-          }
-
-          status.style.display = "none";
-          table.style.display = "table";
-        } catch (err) {
-          status.textContent = "⚠️ Error loading data: " + err.message;
-          console.error(err);
-        }
+      // ✅ Check if the data is an array before iterating
+      if (!Array.isArray(data)) {
+        throw new Error("API returned non-array data: " + JSON.stringify(data));
       }
 
-      // Fetch immediately + auto-refresh every 60 seconds
-      loadStock();
-      setInterval(loadStock, 60000);
-    </script>
+      tbody.innerHTML = "";
+
+      for (const item of data) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${item.name || "Unknown"}</td>
+          <td>${item.stock ?? "?"}</td>
+          <td>${item.lastUpdated || "N/A"}</td>
+        `;
+        tbody.appendChild(tr);
+      }
+
+      status.style.display = "none";
+      table.style.display = "table";
+    } catch (err) {
+      status.textContent = "⚠️ Error loading data: " + err.message;
+      console.error(err);
+    }
+  }
+
+  loadStock();
+  setInterval(loadStock, 60000);
+</script>
+
   </body>
 </html>
