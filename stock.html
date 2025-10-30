@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock Tracker | Plant vs Brainrot Wiki</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+      /* === General Page Setup === */
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        background-color: #0b0c10;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      /* === Header === */
+      header {
+        background: linear-gradient(90deg, #00ff9d, #0077ff, #b400ff);
+        color: #fff;
+        padding: 15px 25px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: 1.8em;
+      }
+
+      header a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      /* === Layout === */
+      main {
+        display: flex;
+        flex: 1;
+        padding: 25px;
+        gap: 25px;
+      }
+
+      .sidebar {
+        width: 220px;
+        background: #111;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 0 12px rgba(0, 255, 150, 0.2);
+        height: fit-content;
+      }
+
+      .sidebar h3 {
+        color: #00ff9d;
+        margin-bottom: 10px;
+      }
+
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .sidebar li {
+        margin: 10px 0;
+      }
+
+      .sidebar a {
+        color: #ccc;
+        text-decoration: none;
+        transition: 0.2s;
+      }
+
+      .sidebar a:hover {
+        color: #00ff9d;
+        text-shadow: 0 0 10px #00ff9d;
+      }
+
+      /* === Content === */
+      .content {
+        flex: 1;
+        background: #111;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 0 15px rgba(0, 255, 150, 0.1);
+      }
+
+      h2 {
+        color: #00ff9d;
+        border-bottom: 2px solid #00ff9d;
+        padding-bottom: 5px;
+      }
+
+      p {
+        line-height: 1.6;
+      }
+
+      /* === Table === */
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      th, td {
+        padding: 12px 15px;
+        text-align: left;
+      }
+
+      th {
+        background: linear-gradient(90deg, #00ff9d, #0077ff);
+        color: #000;
+      }
+
+      tr:nth-child(even) {
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+
+      tr:hover {
+        background-color: rgba(0, 255, 157, 0.1);
+      }
+
+      /* === Footer === */
+      footer {
+        text-align: center;
+        padding: 15px;
+        background: #0d0d0d;
+        color: #aaa;
+        font-size: 0.9em;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .loading {
+        color: #00ff9d;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="index.html">🌿 Plant vs Brainrot Wiki</a></h1>
+    </header>
+
+    <main>
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <h3>Pages</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="plants.html">Plants</a></li>
+          <li><a href="brainrots.html">Brainrots</a></li>
+          <li><a href="items.html">Items</a></li>
+          <li><a href="updates.html">Updates</a></li>
+          <li><a href="stock.html">Stock Tracker</a></li>
+        </ul>
+      </aside>
+
+      <!-- Main Content -->
+      <section class="content">
+        <h2>Stock Tracker</h2>
+        <p>This table shows the live stock data from the official tracker API.</p>
+
+        <div id="status" class="loading">Fetching data...</div>
+        <table id="stockTable" style="display:none;">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Stock</th>
+              <th>Last Updated</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 Plant vs Brainrot Wiki | Designed for fans, by fans 🌱</p>
+    </footer>
+
+    <script>
+      const API_URL = "https://plantsvsbrainrotsstocktracker.com/api/stock";
+      const status = document.getElementById("status");
+      const table = document.getElementById("stockTable");
+      const tbody = table.querySelector("tbody");
+
+      async function loadStock() {
+        try {
+          const res = await fetch(API_URL);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const data = await res.json();
+
+          // Clear old rows
+          tbody.innerHTML = "";
+
+          // Assuming data is an object or array like [{name:"Sunflower", stock:5, updated:"..."}, ...]
+          for (const item of data) {
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td>${item.name || "Unknown"}</td>
+              <td>${item.stock ?? "?"}</td>
+              <td>${item.lastUpdated || "N/A"}</td>
+            `;
+            tbody.appendChild(tr);
+          }
+
+          status.style.display = "none";
+          table.style.display = "table";
+        } catch (err) {
+          status.textContent = "⚠️ Error loading data: " + err.message;
+          console.error(err);
+        }
+      }
+
+      loadStock();
+    </script>
+  </body>
+</html>
