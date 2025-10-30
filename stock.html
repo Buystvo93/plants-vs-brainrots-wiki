@@ -189,21 +189,21 @@
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
       const data = await res.json();
-      console.log("Fetched data:", data); // 👀 Debugging
+      console.log("Fetched data:", data);
 
-      // ✅ Check if the data is an array before iterating
-      if (!Array.isArray(data)) {
-        throw new Error("API returned non-array data: " + JSON.stringify(data));
+      // ✅ Expecting data.items to be an array
+      if (!data.items || !Array.isArray(data.items)) {
+        throw new Error("API returned unexpected structure: " + JSON.stringify(data));
       }
 
       tbody.innerHTML = "";
 
-      for (const item of data) {
+      for (const item of data.items) {
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td>${item.name || "Unknown"}</td>
-          <td>${item.stock ?? "?"}</td>
-          <td>${item.lastUpdated || "N/A"}</td>
+          <td>${item.currentStock ?? "?"}</td>
+          <td>${new Date(data.updatedAt).toLocaleString()}</td>
         `;
         tbody.appendChild(tr);
       }
@@ -219,6 +219,7 @@
   loadStock();
   setInterval(loadStock, 60000);
 </script>
+
 
   </body>
 </html>
