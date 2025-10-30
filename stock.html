@@ -7,7 +7,6 @@
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-      /* === General Page Setup === */
       body {
         font-family: "Poppins", sans-serif;
         margin: 0;
@@ -18,7 +17,6 @@
         min-height: 100vh;
       }
 
-      /* === Header === */
       header {
         background: linear-gradient(90deg, #00ff9d, #0077ff, #b400ff);
         color: #fff;
@@ -39,7 +37,6 @@
         font-weight: 700;
       }
 
-      /* === Layout === */
       main {
         display: flex;
         flex: 1;
@@ -81,7 +78,6 @@
         text-shadow: 0 0 10px #00ff9d;
       }
 
-      /* === Content === */
       .content {
         flex: 1;
         background: #111;
@@ -96,11 +92,6 @@
         padding-bottom: 5px;
       }
 
-      p {
-        line-height: 1.6;
-      }
-
-      /* === Table === */
       table {
         width: 100%;
         border-collapse: collapse;
@@ -127,7 +118,6 @@
         background-color: rgba(0, 255, 157, 0.1);
       }
 
-      /* === Footer === */
       footer {
         text-align: center;
         padding: 15px;
@@ -187,7 +177,9 @@
     </footer>
 
     <script>
-      const API_URL = "https://plantsvsbrainrotsstocktracker.com/api/stock";
+      // ✅ Use your Cloudflare Worker as a proxy
+      const API_URL = "https://pvb-proxy.buystvoinc.workers.dev/";
+
       const status = document.getElementById("status");
       const table = document.getElementById("stockTable");
       const tbody = table.querySelector("tbody");
@@ -198,10 +190,9 @@
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
           const data = await res.json();
 
-          // Clear old rows
           tbody.innerHTML = "";
 
-          // Assuming data is an object or array like [{name:"Sunflower", stock:5, updated:"..."}, ...]
+          // Assuming data is an array of objects
           for (const item of data) {
             const tr = document.createElement("tr");
             tr.innerHTML = `
@@ -220,7 +211,9 @@
         }
       }
 
+      // Fetch immediately + auto-refresh every 60 seconds
       loadStock();
+      setInterval(loadStock, 60000);
     </script>
   </body>
 </html>
